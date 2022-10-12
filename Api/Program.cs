@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 
 
 
-builder.Services.AddDbContext<BoxDbContext>(options => options.UseSqlite("Data source=/infrastructure/db.db"));
+builder.Services.AddDbContext<BoxDbContext>(options => options.UseSqlite("Data source=db.db"));
 
 
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
