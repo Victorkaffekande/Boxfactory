@@ -71,7 +71,6 @@ public class BoxController : ControllerBase
     [Route("UpdadeBox/{id}")]
     public ActionResult UpdateBox([FromBody]Box box,[FromRoute] int id)
     {
-
         try
         {
             return Ok(_boxService.UpdateBox(box, id));

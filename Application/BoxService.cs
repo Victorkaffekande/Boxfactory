@@ -43,6 +43,10 @@ public class BoxService : IBoxService
 
     public Box CreateBox(BoxDTO dto)
     {
-        return _repo.CreateBox(_mapper.Map<Box>(dto));
+        Box box = _mapper.Map<Box>(dto);
+        double totalValue = box.Depth * box.Height * box.Width;
+        box.TotalVolume = totalValue;
+            
+        return _repo.CreateBox(box);
     }
 }
