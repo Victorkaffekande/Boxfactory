@@ -8,5 +8,4 @@ public class BoxDTO
     public int Width { get; set; }
     public int Depth { get; set; }
     public int Height { get; set; }
-    public double TotalVolume { get; set; }
 }
