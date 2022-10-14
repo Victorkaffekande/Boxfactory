@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.DTO;
+using Application.Interfaces;
 using Domain.Enteties;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -30,11 +31,11 @@ public class BoxController : ControllerBase
     
     [HttpPost]
     [Route("CreateBox")]
-    public ActionResult<Box> CreateBox(Box box)
+    public ActionResult<Box> CreateBox(BoxDTO dto)
     {
         try
         {
-            var result = _boxService.CreateBox(box);
+            var result = _boxService.CreateBox(dto);
             return Created("Box/CreateBox/" + result.Id, result);
         }
         catch (ValidationException e)
@@ -78,7 +79,7 @@ public class BoxController : ControllerBase
         }
         catch (KeyNotFoundException e)
         {
-            return NotFound("No person was found" + id);
+            return NotFound("No box was found with id: " + id);
         }
         catch (Exception e)
         {

@@ -1,4 +1,5 @@
-﻿using Domain.Enteties;
+﻿using Application.DTO;
+using Domain.Enteties;
 
 namespace Application.Interfaces;
 
@@ -14,5 +15,5 @@ public interface IBoxService
 
     public Box DeleteBox(int id);
 
-    public Box CreateBox(Box box);
+    public Box CreateBox(BoxDTO dto);
 }

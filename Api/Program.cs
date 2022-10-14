@@ -1,3 +1,6 @@
+using Application.DTO;
+using AutoMapper;
+using Domain.Enteties;
 using FluentValidation;
 using infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +17,9 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<BoxDbContext>(options => options.UseSqlite("Data source=db.db"));
+
+var mapper = new MapperConfiguration(config =>
+    config.CreateMap<BoxDTO, Box>()).CreateMapper();
 
 
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);

@@ -1,4 +1,6 @@
-﻿using Application.Interfaces;
+﻿using Application.DTO;
+using Application.Interfaces;
+using AutoMapper;
 using Domain.Enteties;
 
 namespace Application;
@@ -6,10 +8,12 @@ namespace Application;
 public class BoxService : IBoxService
 {
     private IBoxRepository _repo;
+    private IMapper _mapper;
 
-    public BoxService(IBoxRepository repo)
+    public BoxService(IBoxRepository repo, IMapper mapper)
     {
         _repo = repo;
+        _mapper = mapper;
     }
 
     public List<Box> GetAllBoxes()
@@ -37,8 +41,8 @@ public class BoxService : IBoxService
         return _repo.DeleteBox(id);
     }
 
-    public Box CreateBox(Box box)
+    public Box CreateBox(BoxDTO dto)
     {
-        return _repo.CreateBox(box);
+        return _repo.CreateBox(_mapper.Map<Box>(dto));
     }
 }

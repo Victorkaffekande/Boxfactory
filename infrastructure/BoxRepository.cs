@@ -19,8 +19,8 @@ public class BoxRepository : IBoxRepository
 
     public Box GetBoxById(int id)
     {
-        var person = _context.BoxTable.FirstOrDefault(p => p.Id == id);
-        return person;
+        var box = _context.BoxTable.FirstOrDefault(p => p.Id == id);
+        return box;
     }
 
     public void RebuildDb()
