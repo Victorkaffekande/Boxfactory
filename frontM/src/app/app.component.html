@@ -1,1 +1,61 @@
 
+<div class="grid-container">
+
+  <div class="grid-child purple">
+    <div class="createBox">
+      <h1> Box Factory</h1>
+      <br>
+      <h2>Create Box</h2>
+      Name: <mat-form-field>
+      <input matInput [(ngModel)]="boxName">
+    </mat-form-field>
+      <br>
+
+      Color: <mat-form-field>
+      <input matInput [(colorPicker)]="boxColor" [style.background]="boxColor"/>
+    </mat-form-field>
+      <br>
+
+      Thickness: <mat-form-field>
+      <input type="number" matInput [(ngModel)]="boxThickness">
+    </mat-form-field> in mm
+      <br>
+
+      Width: <mat-form-field>
+      <input type="number" matInput [(ngModel)]="boxWidth">
+    </mat-form-field> in mm
+      <br>
+
+      Depth: <mat-form-field>
+      <input type="number" matInput [(ngModel)]="boxDepth">
+    </mat-form-field> in mm
+      <br>
+
+      Height: <mat-form-field>
+      <input type="number" matInput [(ngModel)]="boxHeight">
+    </mat-form-field> in mm
+      <br>
+      <button [disabled]="boxName== '' || boxColor== ''" mat-raised-button (click)="createBox()">click me!</button>
+      <br>
+    </div>
+  </div>
+
+  <div class="grid-child green">
+    <div>
+      <mat-card style="margin-top: 30px" *ngFor="let b of boxes">
+        <mat-card-title>Name: {{b.name}}</mat-card-title>
+        <mat-card-subtitle >color:  {{b.color}}
+          <input [disabled]="true" [(colorPicker)]="b.color" [cpDisabled]="true" [style.background]="b.color" style="width: 20px"/>
+        </mat-card-subtitle>
+        <mat-card-subtitle>id: {{b.id}}</mat-card-subtitle>
+        <mat-card-subtitle>mål: {{b.width}}x{{b.depth}}x{{b.height}}/{{b.thickness}}mm in Thickness</mat-card-subtitle>
+        <mat-card-subtitle>TotalValue: {{b.totalVolume}}</mat-card-subtitle>
+        <mat-card-actions>
+          <button mat-button (click)="deleteBox(b.id)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </div>
+
+</div>
