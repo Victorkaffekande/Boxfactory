@@ -1,4 +1,6 @@
 ﻿using Application.Interfaces;
+using Domain.Enteties;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -13,9 +15,76 @@ public class BoxController : ControllerBase
     }
 
     [HttpGet]
-    [Route("rebuild")]
+    [Route("Rebuild")]
     public void RebuildDb()
     {
         _boxService.RebuildDb();
     }
+    
+    [HttpGet()]
+    [Route("Boxes")]
+    public ActionResult GetAllBoxes()
+    {
+        return Ok(_boxService.GetAllBoxes());
+    }
+    
+    [HttpPost]
+    [Route("CreateBox")]
+    public ActionResult<Box> CreateBox(Box box)
+    {
+        try
+        {
+            var result = _boxService.CreateBox(box);
+            return Created("Box/CreateBox/" + result.Id, result);
+        }
+        catch (ValidationException e)
+        {
+            return BadRequest(e.Message);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+            
+    }
+    
+    [HttpDelete]
+    [Route("DeleteBox/{id}")]
+    public ActionResult DeleteBox([FromRoute] int id)
+    {
+        try
+        {
+            return Ok(_boxService.DeleteBox(id));
+        }
+        catch (KeyNotFoundException e)
+        {
+            return NotFound("No box was found with id: " + id);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.ToString());
+        }
+    }
+    
+    [HttpPut]
+    [Route("UpdadeBox/{id}")]
+    public ActionResult UpdateBox([FromBody]Box box,[FromRoute] int id)
+    {
+
+        try
+        {
+            return Ok(_boxService.UpdateBox(box, id));
+
+        }
+        catch (KeyNotFoundException e)
+        {
+            return NotFound("No person was found" + id);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.ToString());
+        }
+    }
+    
+    
 }

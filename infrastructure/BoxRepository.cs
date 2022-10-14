@@ -14,12 +14,13 @@ public class BoxRepository : IBoxRepository
 
     public List<Box> GetAllBoxes()
     {
-        throw new NotImplementedException();
+        return _context.BoxTable.ToList();
     }
 
     public Box GetBoxById(int id)
     {
-        throw new NotImplementedException();
+        var person = _context.BoxTable.FirstOrDefault(p => p.Id == id);
+        return person;
     }
 
     public void RebuildDb()
@@ -28,18 +29,36 @@ public class BoxRepository : IBoxRepository
         _context.Database.EnsureCreated();
     }
 
-    public Box UpdateBox(Box box)
+    public Box UpdateBox(Box box, int id)
     {
-        throw new NotImplementedException();
+        var oldBox = GetBoxById(id);
+        if (oldBox.Id.Equals(box.Id))
+        {
+            oldBox.Color = box.Color;
+            oldBox.Depth = box.Depth;
+            oldBox.Height = box.Height;
+            oldBox.Name = box.Name;
+            oldBox.Thickness = box.Thickness;
+            oldBox.Width = box.Width;
+            oldBox.TotalVolume = box.TotalVolume;
+        }
+        _context.BoxTable.Update(oldBox ?? throw new InvalidOperationException());     
+        _context.SaveChanges();                                                        
+        return box;              
     }
 
-    public Box DeleteBox(Box box)
+    public Box DeleteBox(int id)
     {
-        throw new NotImplementedException();
+        var movie = _context.BoxTable.Find(id);
+        _context.BoxTable.Remove(movie ?? throw new InvalidOperationException());
+        _context.SaveChanges();
+        return movie;
     }
 
     public Box CreateBox(Box box)
     {
-        throw new NotImplementedException();
+        _context.BoxTable.Add(box ?? throw new InvalidOperationException());
+        _context.SaveChanges();
+        return box;
     }
 }

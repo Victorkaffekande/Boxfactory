@@ -10,9 +10,9 @@ public interface IBoxService
 
     public void RebuildDb();
 
-    public Box UpdateBox(Box box);
+    public Box UpdateBox(Box box, int id);
 
-    public Box DeleteBox(Box box);
+    public Box DeleteBox(int id);
 
     public Box CreateBox(Box box);
 }

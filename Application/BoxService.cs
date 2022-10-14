@@ -14,12 +14,12 @@ public class BoxService : IBoxService
 
     public List<Box> GetAllBoxes()
     {
-        throw new NotImplementedException();
+        return _repo.GetAllBoxes();
     }
 
     public Box GetBoxById(int id)
     {
-        throw new NotImplementedException();
+        return _repo.GetBoxById(id);
     }
 
     public void RebuildDb()
@@ -27,18 +27,18 @@ public class BoxService : IBoxService
         _repo.RebuildDb();   
     }
 
-    public Box UpdateBox(Box box)
+    public Box UpdateBox(Box box, int id)
     {
-        throw new NotImplementedException();
+        return _repo.UpdateBox(box, id);
     }
 
-    public Box DeleteBox(Box box)
+    public Box DeleteBox(int id)
     {
-        throw new NotImplementedException();
+        return _repo.DeleteBox(id);
     }
 
     public Box CreateBox(Box box)
     {
-        throw new NotImplementedException();
+        return _repo.CreateBox(box);
     }
 }
