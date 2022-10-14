@@ -7,6 +7,7 @@ namespace infrastructure;
 public class BoxRepository : IBoxRepository
 {
     private readonly BoxDbContext _context;
+
     public BoxRepository(BoxDbContext context)
     {
         _context = context;
@@ -40,11 +41,11 @@ public class BoxRepository : IBoxRepository
             oldBox.Name = box.Name;
             oldBox.Thickness = box.Thickness;
             oldBox.Width = box.Width;
-            oldBox.TotalVolume = box.TotalVolume;
         }
-        _context.BoxTable.Update(oldBox ?? throw new InvalidOperationException());     
-        _context.SaveChanges();                                                        
-        return box;              
+
+        _context.BoxTable.Update(oldBox ?? throw new InvalidOperationException());
+        _context.SaveChanges();
+        return box;
     }
 
     public Box DeleteBox(int id)

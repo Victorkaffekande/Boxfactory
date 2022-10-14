@@ -12,12 +12,17 @@ public class BoxService : IBoxService
     private IBoxRepository _repo;
     private IMapper _mapper;
     private IValidator<BoxDTO> _BoxDtoValidator;
+    private IValidator<Box> _boxValidator;
 
-    public BoxService(IBoxRepository repo, IMapper mapper, IValidator<BoxDTO> boxDtoValidator)
+    public BoxService(IBoxRepository repo,
+        IMapper mapper,
+        IValidator<BoxDTO> boxDtoValidator,
+        IValidator<Box> boxValidator)
     {
         _repo = repo;
         _mapper = mapper;
         _BoxDtoValidator = boxDtoValidator;
+        _boxValidator = boxValidator;
     }
 
     public List<Box> GetAllBoxes()
@@ -37,6 +42,8 @@ public class BoxService : IBoxService
 
     public Box UpdateBox(Box box, int id)
     {
+        var val = _boxValidator.Validate(box);
+        if (!val.IsValid) throw new ValidationException(val.ToString());
         return _repo.UpdateBox(box, id);
     }
 

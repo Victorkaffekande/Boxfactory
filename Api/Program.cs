@@ -18,6 +18,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<BoxDbContext>(options => options.UseSqlite("Data source=db.db"));
 
+builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
 var mapper = new MapperConfiguration(config =>
     config.CreateMap<BoxDTO, Box>()).CreateMapper();
 

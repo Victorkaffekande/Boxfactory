@@ -9,5 +9,5 @@ public class Box
     public int Width { get; set; }
     public int Depth { get; set; }
     public int Height { get; set; }
-    public double TotalVolume { get; set; }
+    public double TotalVolume => Width * Height * Depth;
 }
