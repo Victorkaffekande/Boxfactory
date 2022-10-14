@@ -21,7 +21,7 @@ builder.Services.AddDbContext<BoxDbContext>(options => options.UseSqlite("Data s
 var mapper = new MapperConfiguration(config =>
     config.CreateMap<BoxDTO, Box>()).CreateMapper();
 
-
+builder.Services.AddSingleton(mapper);
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
 infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructure(builder.Services);
 

@@ -1,7 +1,9 @@
 ﻿using Application.DTO;
 using Application.Interfaces;
+using Application.Validators;
 using AutoMapper;
 using Domain.Enteties;
+using FluentValidation;
 
 namespace Application;
 
@@ -9,11 +11,13 @@ public class BoxService : IBoxService
 {
     private IBoxRepository _repo;
     private IMapper _mapper;
+    private IValidator<BoxDTO> _BoxDtoValidator;
 
-    public BoxService(IBoxRepository repo, IMapper mapper)
+    public BoxService(IBoxRepository repo, IMapper mapper, IValidator<BoxDTO> boxDtoValidator)
     {
         _repo = repo;
         _mapper = mapper;
+        _BoxDtoValidator = boxDtoValidator;
     }
 
     public List<Box> GetAllBoxes()
@@ -28,7 +32,7 @@ public class BoxService : IBoxService
 
     public void RebuildDb()
     {
-        _repo.RebuildDb();   
+        _repo.RebuildDb();
     }
 
     public Box UpdateBox(Box box, int id)
@@ -43,10 +47,9 @@ public class BoxService : IBoxService
 
     public Box CreateBox(BoxDTO dto)
     {
-        Box box = _mapper.Map<Box>(dto);
-        double totalValue = box.Depth * box.Height * box.Width;
-        box.TotalVolume = totalValue;
-            
-        return _repo.CreateBox(box);
+        var val = _BoxDtoValidator.Validate(dto);
+        if (!val.IsValid) throw new ValidationException(val.ToString());
+
+        return _repo.CreateBox(_mapper.Map<Box>(dto));
     }
 }
