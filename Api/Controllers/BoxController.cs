@@ -68,7 +68,7 @@ public class BoxController : ControllerBase
     }
     
     [HttpPut]
-    [Route("UpdadeBox/{id}")]
+    [Route("UpdateBox/{id}")]
     public ActionResult UpdateBox([FromBody]Box box,[FromRoute] int id)
     {
         try

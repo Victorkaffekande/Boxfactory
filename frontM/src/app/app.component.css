@@ -1,9 +1,24 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: .10em;
+  grid-column-gap: 1em;
 }
+
+
 .createBox{
   margin-left: 100px;
   margin-top: 30px;
 }
+
+button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.space {
+  width: 10px;
+  height: auto;
+  display: inline-block;
+}
+

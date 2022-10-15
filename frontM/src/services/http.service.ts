@@ -16,12 +16,12 @@ export class HttpService {
     customAxios.interceptors.response.use(
       response => {
       if (response.status==201){
-        this.matSnackbar.open("Great success")
+        this.matSnackbar.open("Great success")._dismissAfter(1000)
       }
       return response;
       }, rejected => {
         if (rejected.response.status>= 400 && rejected.response.status<500){
-          matSnackbar.open(rejected.response.data)
+          matSnackbar.open(rejected.response.data)._dismissAfter(1000)
         }else if (rejected.response.status> 499){
           this.matSnackbar.open("Something went wrong")
         }
@@ -44,6 +44,11 @@ export class HttpService {
 
   async deleteBox(id: any) {
     const httpResult = await customAxios.delete('DeleteBox/' +id)
+    return httpResult.data;
+  }
+
+  async editBox(dto: { depth: number; color: string; thickness: number; name: string; width: number; id: number; height: number }) {
+    const httpResult = await customAxios.put('UpdateBox/'+dto.id , dto)
     return httpResult.data;
   }
 }

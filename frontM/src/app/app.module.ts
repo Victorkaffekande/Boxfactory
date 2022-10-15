@@ -12,6 +12,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Overlay} from "@angular/cdk/overlay";
 import {ColorPickerModule} from "ngx-color-picker";
 import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {MatChipsModule} from "@angular/material/chips";
     MatButtonModule,
     MatCardModule,
     ColorPickerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonToggleModule,
+    MatListModule
   ],
   providers: [MatSnackBar, Overlay],
   bootstrap: [AppComponent]

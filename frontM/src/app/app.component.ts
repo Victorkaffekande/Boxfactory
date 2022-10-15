@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   boxWidth: number = 0;
   boxDepth: number = 0;
   boxHeight: number = 0;
+  boxId: number = -1;
   boxes: any;
 
 
@@ -40,14 +41,55 @@ async createBox(){
       thickness: this.boxThickness,
       width: this.boxWidth,
       depth: this.boxDepth,
-      height: this.boxHeight
+      height: this.boxHeight,
+      id: this.boxId
     }
     const result = await this.http.createBox(dto);
     this.boxes.push(result)
   }
 
+  // @ts-ignore
   async deleteBox(id: any) {
-    const box = await this.http.deleteBox(id)
-    this.boxes = this.boxes.filter((b: { id: any; }) => b.id != box.id)
+    //if (confirm('Sure you want to delete')) {
+      const box = await this.http.deleteBox(id)
+      this.boxes = this.boxes.filter((b: { id: any; }) => b.id != box.id)
+      this.boxId = -1
+    //} else {
+    //  return false;
+    //}
   }
+
+  UpdateBoxValues(b: any) {
+    this.boxName = b.name;
+    this.boxColor = b.color;
+    this.boxThickness = b.thickness;
+    this.boxWidth = b.width;
+    this.boxDepth = b.depth;
+    this.boxHeight = b.height;
+    this.boxId = b.id;
+  }
+
+  async updateBox() {
+    let dto = {
+      name: this.boxName,
+      color: this.boxColor,
+      thickness: this.boxThickness,
+      width: this.boxWidth,
+      depth: this.boxDepth,
+      height: this.boxHeight,
+      id: this.boxId
+    }
+    await this.http.editBox(dto);
+    await this.ngOnInit();
+  }
+
+  // @ts-ignore
+  async deleteBoxWithoutId() {
+    if (confirm('Sure you want to delete')) {
+      const box = await this.http.deleteBox(this.boxId)
+      this.boxes = this.boxes.filter((b: { id: any; }) => b.id != box.id)
+      this.boxId = -1
+    } else {
+      return false;
+    }  }
 }
