@@ -48,15 +48,15 @@ async createBox(){
     this.boxes.push(result)
   }
 
-  // @ts-ignore
+  //@ts-ignore
   async deleteBox(id: any) {
-    //if (confirm('Sure you want to delete')) {
+    if (confirm('Sure you want to delete')) {
       const box = await this.http.deleteBox(id)
       this.boxes = this.boxes.filter((b: { id: any; }) => b.id != box.id)
       this.boxId = -1
-    //} else {
-    //  return false;
-    //}
+    } else {
+      return false;
+    }
   }
 
   UpdateBoxValues(b: any) {
@@ -92,4 +92,6 @@ async createBox(){
     } else {
       return false;
     }  }
+
+
 }

@@ -14,6 +14,7 @@ import {ColorPickerModule} from "ngx-color-picker";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatListModule} from "@angular/material/list";
     ColorPickerModule,
     MatChipsModule,
     MatButtonToggleModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   providers: [MatSnackBar, Overlay],
   bootstrap: [AppComponent]

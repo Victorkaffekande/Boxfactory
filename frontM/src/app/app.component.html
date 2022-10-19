@@ -1,53 +1,68 @@
-<html style="background-color: bisque">
-<div class="grid-container" style="background-color: bisque">
+<html style="background-color: white">
+<div class="grid-container" style="background-color: #f6e6d2">
 <div>
-  <mat-card class="createBox" style="width: 300px">
-    <h1> Box Factory</h1>
-    <br>
-    <h2>Create Box</h2>
-    Name: <mat-form-field>
-    <input matInput [(ngModel)]="boxName">
-  </mat-form-field>
-    <br>
 
-    Color: <mat-form-field>
-    <input matInput [(colorPicker)]="boxColor" [style.background]="boxColor"/>
-  </mat-form-field>
-    <br>
-
-    Thickness: <mat-form-field>
-    <input type="number" [valueAsNumber]="boxThickness" matInput [(ngModel)]="boxThickness">
-  </mat-form-field> in mm
-    <br>
-
-    Width: <mat-form-field>
-    <input type="number" matInput [(ngModel)]="boxWidth">
-  </mat-form-field> in mm
-    <br>
-
-    Depth: <mat-form-field>
-    <input type="number" matInput [(ngModel)]="boxDepth">
-  </mat-form-field> in mm
-    <br>
-
-    Height: <mat-form-field>
-    <input type="number" matInput [(ngModel)]="boxHeight">
-  </mat-form-field> in mm
-    <br>
-    <button [disabled]="boxName== '' || boxColor== ''" mat-raised-button (click)="createBox()">Add box</button>
-    <div class="space"></div>
-    <button [disabled]="boxId == -1" mat-raised-button (click)="updateBox()">Edit Box</button>
-    <div class="space"></div>
-    <button [disabled]="boxId == -1" mat-raised-button (click)="deleteBoxWithoutId()">Delete</button>
-    <br>
+  <mat-card class="createBox" style="align-self: auto; margin-top: 30px">
+    <h1>Box Factory</h1>
   </mat-card>
-  <br>
-  <mat-card class="createBox" style="align-self: auto; margin-top: 10px">
-    <h1>Bart Manifesto</h1>
-    <h4>I am bart. and this is my box factory overview. I made this website for better management over my many boxes, which i need to take over world. </h4>
+
+
+
+  <mat-card class="createBox" style="align-self: auto; margin-top: 30px">
+        <h2>Box Management</h2>
+        Name: <mat-form-field>
+        <input matInput [(ngModel)]="boxName">
+      </mat-form-field>
+        <br>
+
+        Color: <mat-form-field>
+        <input matInput [(colorPicker)]="boxColor" [style.background]="boxColor"/>
+      </mat-form-field>
+        <br>
+
+        Thickness: <mat-form-field>
+        <input type="number" [valueAsNumber]="boxThickness" matInput [(ngModel)]="boxThickness">
+      </mat-form-field>/mm
+        <br>
+
+        Width: <mat-form-field>
+        <input type="number" matInput [(ngModel)]="boxWidth">
+      </mat-form-field>/mm
+        <br>
+
+        Depth: <mat-form-field>
+        <input type="number" matInput [(ngModel)]="boxDepth">
+      </mat-form-field>/mm
+        <br>
+
+        Height: <mat-form-field>
+        <input type="number" matInput [(ngModel)]="boxHeight">
+      </mat-form-field>/mm
+        <br>
+        <button [disabled]="boxName== '' || boxColor== ''" mat-raised-button (click)="createBox()">Add box</button>
+        <div class="space"></div>
+        <button [disabled]="boxId == -1" mat-raised-button (click)="updateBox()">Edit Box</button>
+        <div class="space"></div>
+        <button [disabled]="boxId == -1" mat-raised-button (click)="deleteBoxWithoutId()">Delete</button>
+        <br>
   </mat-card>
-  <mat-card class="createBox" style="align-self: auto; margin-top: 35px">
-    <h1>Bart Best Quotes</h1>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Bart Manifesto
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+      <h4>I am bart. and i have managed to become the new ceo of this great box Factory. Therefor while the old Head of Springfield Box Factory will be busy golfing, will I Bart Simpsons use the
+        power of this great Box Factory to become famous. </h4>
+      <h4>And Trust me one day i will make a show about this day and call it "Bart Gets Famous"</h4>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Bart Best Quotes
+      </mat-panel-title>
+    </mat-expansion-panel-header>
     <h4>1. “Eat my shorts!” ― Bart Simpson </h4>
     <h4>2. “Don’t have a cow, man.” ― Bart Simpson </h4>
     <h4>3. “Get bent.” ― Bart Simpson </h4>
@@ -57,13 +72,13 @@
     <h4>7. “Whoa, mama!” ― Bart Simpson</h4>
     <h4>9. “Hey, cool, I’m dead.” ― Bart Simpson</h4>
     <h4>10. “I can’t promise I’ll try, but I’ll try to try.” ― Bart Simpson</h4>
-  </mat-card>
+  </mat-expansion-panel>
 </div>
 
 
-<div class="grid-container" >
-      <mat-card style="margin-top: 30px;width: 300px;height: 300px;"  *ngFor="let b of boxes">
-        <button mat-button style="width: 300px; height: 300px" (click)="UpdateBoxValues(b)">
+<ol class="flex-container">
+      <mat-card class="Boxes" *ngFor="let b of boxes">
+        <button mat-button class="Button-On-Boxes"  (click)="UpdateBoxValues(b)">
           <mat-card-title>{{b.name}}</mat-card-title>
           <mat-card-subtitle >color:  {{b.color}}
           <input [disabled]="true" [(colorPicker)]="b.color" [cpDisabled]="true" [style.background]="b.color" style="width: 20px"/>
@@ -77,8 +92,8 @@
             </mat-card-actions>
         </button>
       </mat-card>
+    </ol>
 
 </div>
 
-</div>
 </html>
