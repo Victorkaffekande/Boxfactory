@@ -5,11 +5,13 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class BoxController : ControllerBase
 {
     private IBoxService _boxService;
+
     public BoxController(IBoxService boxService)
     {
         _boxService = boxService;
@@ -21,14 +23,21 @@ public class BoxController : ControllerBase
     {
         _boxService.RebuildDb();
     }
-    
+
     [HttpGet()]
     [Route("Boxes")]
     public ActionResult GetAllBoxes()
     {
         return Ok(_boxService.GetAllBoxes());
     }
-    
+
+    [HttpGet]
+    [Route("GetBoxById/{id}")]
+    public ActionResult<Box> GetSingleBox([FromRoute] int id)
+    {
+        return Ok(_boxService.GetBoxById(id));
+    }
+
     [HttpPost]
     [Route("CreateBox")]
     public ActionResult<Box> CreateBox(BoxDTO dto)
@@ -46,9 +55,8 @@ public class BoxController : ControllerBase
         {
             return StatusCode(500, e.Message);
         }
-            
     }
-    
+
     [HttpDelete]
     [Route("DeleteBox/{id}")]
     public ActionResult DeleteBox([FromRoute] int id)
@@ -66,15 +74,14 @@ public class BoxController : ControllerBase
             return StatusCode(500, e.ToString());
         }
     }
-    
+
     [HttpPut]
     [Route("UpdateBox/{id}")]
-    public ActionResult UpdateBox([FromBody]Box box,[FromRoute] int id)
+    public ActionResult UpdateBox([FromBody] Box box, [FromRoute] int id)
     {
         try
         {
             return Ok(_boxService.UpdateBox(box, id));
-
         }
         catch (KeyNotFoundException e)
         {
@@ -85,6 +92,4 @@ public class BoxController : ControllerBase
             return StatusCode(500, e.ToString());
         }
     }
-    
-    
 }

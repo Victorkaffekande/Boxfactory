@@ -20,8 +20,7 @@ public class BoxRepository : IBoxRepository
 
     public Box GetBoxById(int id)
     {
-        var box = _context.BoxTable.FirstOrDefault(p => p.Id == id);
-        return box;
+        return _context.BoxTable.Find(id);
     }
 
     public void RebuildDb()
