@@ -1,0 +1,8 @@
+
+<ul class="heroes">
+  <li *ngFor="let box of boxes">
+    <a routerLink="/detail/{{box.id}}">
+      <span class="badge">{{box.id}}</span>{{box.name}}
+    </a>
+  </li>
+</ul>
