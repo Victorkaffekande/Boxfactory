@@ -1,8 +1,24 @@
+<h3 class="d-flex justify-content-center">
+  All boxes in the warehouse
+</h3>
+<div class="d-flex p-2 justify-content-center">
 
-<ul class="heroes">
-  <li *ngFor="let box of boxes">
-    <a routerLink="/detail/{{box.id}}">
-      <span class="badge">{{box.id}}</span>{{box.name}}
-    </a>
-  </li>
-</ul>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let box of boxes">
+      <div class="d-inline-block p-1">
+        <button class="list-group-item list-group-item-action"
+                routerLink="/detail/{{box.id}}">{{box.name}}
+        </button>
+      </div>
+      <button type="button"
+              class="btn btn-outline-danger" (click)="delete(box)">
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>
+
+
+
+
+

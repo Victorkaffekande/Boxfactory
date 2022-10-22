@@ -32,4 +32,11 @@ export class BoxDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  save(): void {
+    if (this.box){
+      this.boxService.updateBox(this.box)
+        .subscribe(()=>this.goBack())
+    }
+  }
 }
