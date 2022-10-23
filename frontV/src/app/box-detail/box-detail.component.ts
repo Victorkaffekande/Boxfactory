@@ -39,4 +39,8 @@ export class BoxDetailComponent implements OnInit {
         .subscribe(()=>this.goBack())
     }
   }
+
+  updateBox(value: string, colorBox: HTMLInputElement) {
+    colorBox.value = value;
+  }
 }
