@@ -5,7 +5,6 @@
   grid-column-gap: 1em;
 }
 
-
 .createBox{
   margin-left: 100px;
   margin-top: 30px;
@@ -24,6 +23,11 @@
   margin-left: 100px;
 }
 
+
+.Boxes{
+  margin-top: 30px;
+  height: 300px;
+}
 .flex-container{
   display: flex;
   flex-wrap: wrap;
@@ -35,11 +39,6 @@
   align-self: flex-start; /* This command took me days to find and im very happy i found it, i tried to both do a grid and flex to order my boxes and it kept aligning weird. when there was a few boxes, but magically when there was alot(plus 9) of boxes enough to fill the page, it look perfect. but when you only had like >9 it would start to have bigger and bigger gaps between rows depending on how many rows you had. incase you find it interesting you could try to remove the line. i do not like css, but somehow i like the frustrations. -Magnus Overgaard 2022*/
   margin: 0;
   padding: 0;
-}
-
-.Boxes{
-  margin-top: 30px;
-  height: 300px;
 }
 
 button {
