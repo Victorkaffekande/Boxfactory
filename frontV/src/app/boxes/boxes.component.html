@@ -4,15 +4,21 @@
 <div class="d-flex justify-content-center">
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let box of boxes">
-      <div class="d-inline-block p-1">
-        <button class="list-group-item list-group-item-action"
-                routerLink="/detail/{{box.id}}">{{box.name}}
-        </button>
+
+      <div class="card">
+        <input class="card-img-top" type="color" value="{{box.color}}" disabled>
+        <h5>{{box.name}}</h5>
+
+          <button class="btn btn-primary"
+                  routerLink="/detail/{{box.id}}">Edit
+          </button>
+          <button type="button"
+                  class="btn btn-outline-danger" (click)="delete(box)">
+            Delete
+          </button>
+
       </div>
-      <button type="button"
-              class="btn btn-outline-danger" (click)="delete(box)">
-        Delete
-      </button>
+
     </li>
   </ul>
 </div>
