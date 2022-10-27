@@ -1,0 +1,103 @@
+:root{
+  --primary-color: #ca9864;
+}
+.box{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 50px; /* change me */
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg);
+
+  animation: anim 15s linear infinite;
+}
+
+@keyframes anim {
+  to{
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
+
+.face{
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background: #ca9864;
+  overflow: hidden;
+}
+
+.front{
+  transform: translateZ(1em);
+  background: #ca9864;
+}
+
+.back{
+  transform: translateZ(-1em);
+  background: #ca9864;
+}
+
+.left{
+  transform: translateX(-1em) rotateY(90deg);
+  background: #d8aa77;
+}
+
+.right{
+  transform: translateX(1em) rotateY(90deg);
+  background: #d8aa77;
+}
+
+.top{
+  transform: translateY(-1em) rotateX(90deg);
+  background: #e8bb84;
+}
+
+.bottom{
+  transform: translateY(1em) rotateX(90deg);
+}
+
+.front span,
+.back span,
+.top span{
+  position: absolute;
+  background: #bd8c58;
+}
+
+.top span{
+  height:100%;
+  width:20%; /* tape width*/
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.front span{
+  height: 30px;/* tape dybte */
+  width: 20%; /* tape width*/
+  left: 50%;
+  transform: translateX(-50%);
+}
+.back span{
+  height: 30px;/* tape dybte */
+  width: 20%; /* tape width*/
+  left: 50%;
+  transform: translateX(-50%);
+}
+.front span::before,
+.back span::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  bottom: -5px;
+  left: 0;
+  background: #ca9864;
+  transform: rotate(45deg);
+}
+
+.left, .right, .front, .back{
+  -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0004);
+}

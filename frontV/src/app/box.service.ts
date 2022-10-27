@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Box} from "./boxes/box";
-import {BOXES} from "./mock-boxes";
+
 import {catchError, map, tap, Observable, of, pipe} from "rxjs";
 import {MessageService} from "./message.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";

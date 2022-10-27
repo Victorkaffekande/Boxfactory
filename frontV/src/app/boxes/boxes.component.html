@@ -1,27 +1,40 @@
-<h3 class="d-flex justify-content-center">
-  All boxes in the warehouse
-</h3>
-<div class="d-flex justify-content-center">
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let box of boxes">
-
-      <div class="card">
-        <input class="card-img-top" type="color" value="{{box.color}}" disabled>
-        <h5>{{box.name}}</h5>
-
-          <button class="btn btn-primary"
-                  routerLink="/detail/{{box.id}}">Edit
-          </button>
-          <button type="button"
-                  class="btn btn-outline-danger" (click)="delete(box)">
-            Delete
-          </button>
-
-      </div>
-
-    </li>
-  </ul>
+<app-messages></app-messages>
+<div class="modal-body row justify-content-center">
+  <div class="col-md-4">
+    <h3 class="d-flex justify-content-center">
+      All boxes in the warehouse
+    </h3>
+    <ul class="form-group">
+      <li class="list-group-item" *ngFor="let box of boxes">
+        <div class="card">
+          <div class="card-img-top">
+            <input type="color" [(ngModel)]="box.color" disabled>
+          </div>
+          <h5 class="card-title">{{box.name}}</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{box.width}}w x {{box.height}}h x {{box.depth}}d</li>
+          </ul>
+          <div class="btn-group" role="group">
+            <button class="btn btn-primary"
+                    [class.selected]="box === selectedBox"
+                    (click)="onEdit(box)"
+            >
+              Edit
+            </button>
+            <button type="button"
+                    class="btn btn-danger" (click)="delete(box)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <app-box-detail
+    [inBox]="selectedBox"
+    (cancelEvent)="nullSelectedBox($event)"></app-box-detail>
 </div>
+
 
 
 

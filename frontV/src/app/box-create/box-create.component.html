@@ -1,8 +1,9 @@
-<form class="container">
+<div class="container">
+
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputName">Box name</label>
-      <input type="text" class="form-control" id="inputName" placeholder="Name" required #boxName>
+      <input type="text" class="form-control" id="inputName" placeholder="Name" [(ngModel)]="boxDto.name">
     </div>
     <div class="form-group col-md-6">
       <label for="inputColor">Color</label>
@@ -16,18 +17,21 @@
                  id="inputColor"
                  type="color"
                   value="#FF0000"
+                         [(ngModel)]="boxDto.color"
                          #boxColor>
         </span>
       </div>
 
     </div>
   </div>
+
+
   <div class="form-row"> <!-- width height depth row-->
 
     <div class="form-group col-md-4">
       <label for="inputWidth">Width</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputWidth" #boxWidth>
+        <input type="number" min=1 class="form-control" id="inputWidth" [(ngModel)]="boxDto.width">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
@@ -37,7 +41,7 @@
     <div class="form-group col-md-4">
       <label for="inputHeight">Height</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputHeight" #boxHeight>
+        <input type="number" min=1 class="form-control" id="inputHeight" [(ngModel)]="boxDto.height" >
         <div class="input-group-append">
           <span class="input-group-text">mm</span>
         </div>
@@ -48,7 +52,7 @@
     <div class="form-group col-md-4">
       <label for="inputDepth">Width</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputDepth" #boxDepth>
+        <input type="number" min=1 class="form-control" id="inputDepth" [(ngModel)]="boxDto.depth">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
@@ -61,7 +65,7 @@
     <div class="form-group col-md-6">
       <label for="inputThickness">Cardboard Thickness</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputThickness" #boxThickness>
+        <input type="number" min=1 class="form-control" id="inputThickness" [(ngModel)]="boxDto.thickness">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
@@ -82,14 +86,8 @@
 
 
     <!-- (click) passes input value to add() and then clears the input -->
-    <button type="button" class="btn btn-primary btn-lg" (click)="add(boxName.value,
-  boxColor.value,
-  boxWidth.value,
-  boxDepth.value,
-  boxHeight.value,
-  boxThickness.value
-  );boxDepth.value=''; boxName.value=''">
+    <button type="button" class="btn btn-primary btn-lg" (click)="add();">
       Add Box
     </button>
 
-</form>
+</div>
