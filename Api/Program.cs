@@ -1,9 +1,14 @@
+using System.Text;
 using Application.DTO;
+using Application.Helpers;
 using AutoMapper;
 using Domain.Enteties;
 using FluentValidation;
 using infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
-builder.Services.AddDbContext<BoxDbContext>(options => options.UseSqlite("Data source=db.db"));
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite("Data source=db.db"));
 
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -26,6 +30,23 @@ var mapper = new MapperConfiguration(config =>
 builder.Services.AddSingleton(mapper);
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
 infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructure(builder.Services);
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+            builder.Configuration.GetValue<String>("AppSettings:Secret")))
+    };
+});
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("AdminPolicy", (policy) => { policy.RequireRole("Admin"); });
+});
+
 
 builder.Services.AddCors();
 var app = builder.Build();
@@ -35,15 +56,18 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors(options => {
-        options.AllowAnyOrigin();
-        options.AllowAnyHeader();
-        options.AllowAnyMethod();
-    });
 }
 
-app.UseHttpsRedirection();
+app.UseCors(options =>
+{
+    options.SetIsOriginAllowed(origin => true)
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+});
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

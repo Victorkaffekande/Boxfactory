@@ -6,9 +6,9 @@ namespace infrastructure;
 
 public class BoxRepository : IBoxRepository
 {
-    private readonly BoxDbContext _context;
+    private readonly DatabaseContext _context;
 
-    public BoxRepository(BoxDbContext context)
+    public BoxRepository(DatabaseContext context)
     {
         _context = context;
     }

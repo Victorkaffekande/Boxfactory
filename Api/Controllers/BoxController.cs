@@ -2,10 +2,12 @@
 using Application.Interfaces;
 using Domain.Enteties;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class BoxController : ControllerBase
@@ -17,6 +19,7 @@ public class BoxController : ControllerBase
         _boxService = boxService;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     [Route("Rebuild")]
     public void RebuildDb()
@@ -38,6 +41,7 @@ public class BoxController : ControllerBase
         return Ok(_boxService.GetBoxById(id));
     }
 
+    [Authorize("AdminPolicy")]
     [HttpPost]
     [Route("CreateBox")]
     public ActionResult<Box> CreateBox(BoxDTO dto)
@@ -75,6 +79,7 @@ public class BoxController : ControllerBase
         }
     }
 
+    [Authorize("AdminPolicy")]
     [HttpPut]
     [Route("UpdateBox/{id}")]
     public ActionResult UpdateBox([FromBody] Box box, [FromRoute] int id)
