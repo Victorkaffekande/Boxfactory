@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BoxDto} from "../boxes/boxDto";
 import {BoxService} from "../box.service";
 import {MessageService} from "../message.service";
+
 
 @Component({
   selector: 'app-box-create',
@@ -14,22 +15,24 @@ export class BoxCreateComponent implements OnInit {
 
   ngOnInit(): void {
   }
+test:string ="TTTT";
+ boxDto: BoxDto={
+    name: "",
+    color: "#ff0000",
+    width: 0,
+    height: 0,
+    depth: 0,
+    thickness: 0,
+    totalVolume: 3
+  }
 
-
-  add(name: string, color: string, width: string, depth: string, height: string, thickness: string): void {
+  add(): void {
     //validation?!?!?
-    const boxDto: BoxDto = {
-      name: name,
-      color: color,
-      width: parseInt(width),
-      height: parseInt(height),
-      depth: parseInt(depth),
-      thickness: parseInt(thickness),
-      totalVolume: +width * +height * +depth
+    if (this.boxDto){
+      this.boxService.addBox(this.boxDto)
+        .subscribe();
     }
 
-    this.boxService.addBox(boxDto)
-      .subscribe();
   }
 
 
