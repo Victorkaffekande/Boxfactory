@@ -10,6 +10,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './header/header.component';
 import { BoxCreateComponent } from './box-create/box-create.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BoxCreateComponent } from './box-create/box-create.component';
     BoxDetailComponent,
     MessagesComponent,
     HeaderComponent,
-    BoxCreateComponent
+    BoxCreateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
