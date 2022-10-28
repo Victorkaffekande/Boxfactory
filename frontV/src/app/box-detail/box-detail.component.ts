@@ -4,7 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {BoxService} from "../box.service";
 import {MessageService} from "../message.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+
 
 @Component({
   selector: 'app-box-detail',
@@ -15,28 +16,25 @@ export class BoxDetailComponent implements OnInit {
 
   //form setup
   detailsForm = this.fb.group({
-    name:["filler"],
+    name:[""],
     colorText:[''],
     color: [""],
     width: [''],
     height: [''],
     depth: [''],
     thickness: [''],
-    totalVolume: ['']
+    totalVolume: [{value:'', disabled: true,}]
   });
 
   box?:Box;
-  snapshot?:Box;
+
 @Input()
 set inBox(box: any){
   this.box = box;
   this.fillForm();
-  this.snapshot = JSON.parse(JSON.stringify(box))
 }
 
   @Output() cancelEvent = new EventEmitter<Box>();
-  // @ts-ignore
-
 
   constructor(
     private route: ActivatedRoute,
@@ -54,17 +52,17 @@ set inBox(box: any){
 
   fillForm() {
     if (this.box){
+      this.detailsForm.controls['name'].setValue(this.box.name)
+      this.detailsForm.controls['color'].setValue(this.box.color)
+      this.detailsForm.controls['colorText'].setValue(this.box.color)
+      this.detailsForm.controls['width'].setValue(this.box.width +"")
+      this.detailsForm.controls['height'].setValue(this.box.height +"")
+      this.detailsForm.controls['depth'].setValue(this.box.depth +"")
+      this.detailsForm.controls['thickness'].setValue(this.box.thickness +"")
+      this.detailsForm.controls['totalVolume'].setValue(this.box.totalVolume +"")
+
       // @ts-ignore
-      this.detailsForm = this.fb.group({
-        name:[this.box.name],
-        colorText:[this.box.color],
-        color: [this.box.color],
-        width: [this.box.width],
-        height: [this.box.height],
-        depth: [this.box.depth],
-        thickness: [this.box.thickness],
-        totalVolume: [this.box.totalVolume]
-      });
+
     }
   }
 
@@ -76,32 +74,26 @@ set inBox(box: any){
 
   save(): void {
     if (this.box) {
-      // @ts-ignore
-      this.box.name = this.detailsForm.get("name").value;
-      // @ts-ignore
-      this.box.color = this.detailsForm.get("color").value;
-      // @ts-ignore
-      this.box.width = this.detailsForm.get("width").value;
-      // @ts-ignore
-      this.box.height = this.detailsForm.get("height").value;
-      // @ts-ignore
-      this.box.depth = this.detailsForm.get("depth").value;
-      // @ts-ignore
-      this.box.totalVolume = this.detailsForm.get("totalVolume").value;
-      // @ts-ignore
-      this.box.thickness = this.detailsForm.get("thickness").value;
+      this.box.name = <string>this.detailsForm.get("name")?.value;
+      this.box.color = <string>this.detailsForm.get("color")?.value;
+      this.box.width = Number(<string>this.detailsForm.get("width")?.value);
+      this.box.height = Number(<string>this.detailsForm.get("height")?.value);
+      this.box.depth = Number(<string>this.detailsForm.get("depth")?.value);
+      this.box.totalVolume = Number(<string>this.detailsForm.get("totalVolume")?.value);
+      this.box.thickness = Number(<string>this.detailsForm.get("thickness")?.value);
       this.boxService.updateBox(this.box)
         .subscribe();
     }
+    this.CancelDetails();
   }
-
-
 
   updateBox(value: string, colorBox: HTMLInputElement) {
     colorBox.value = value;
   }
 
+
   CancelDetails() {
+    this.mess.add("Cancel clicked")
     this.cancelEvent.emit()
   }
 

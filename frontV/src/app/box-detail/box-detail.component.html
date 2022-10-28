@@ -3,6 +3,7 @@
     <div class="form-group col-md-6">
       <label for="inputName">Box name</label>
       <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" >
+
     </div>
     <div class="form-group col-md-6">
       <label for="inputColor">Color</label>
@@ -29,7 +30,7 @@
     <div class="form-group col-md-4">
       <label for="inputWidth">Width</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputWidth" formControlName="width" [(ngModel)]="box.width">
+        <input type="number" min=1 class="form-control" id="inputWidth" formControlName="width">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
@@ -39,7 +40,7 @@
     <div class="form-group col-md-4">
       <label for="inputHeight">Height</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputHeight" formControlName="height" [(ngModel)]="box.height">
+        <input type="number" min=1 class="form-control" id="inputHeight" formControlName="height">
         <div class="input-group-append">
           <span class="input-group-text">mm</span>
         </div>
@@ -50,7 +51,7 @@
     <div class="form-group col-md-4">
       <label for="inputDepth">Depth</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputDepth" formControlName="depth" [(ngModel)]="box.depth">
+        <input type="number" min=1 class="form-control" id="inputDepth" formControlName="depth">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
@@ -63,7 +64,7 @@
     <div class="form-group col-md-6">
       <label for="inputThickness">Cardboard Thickness</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputThickness" formControlName="thickness" [(ngModel)]="box.thickness">
+        <input type="number" min=1 class="form-control" id="inputThickness" formControlName="thickness">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
@@ -74,7 +75,7 @@
       <label for="inputVolume">Total Volume</label>
       <div class="input-group">
         <!-- todo fix total volume-->
-        <input type="number" min=1 class="form-control" id="inputVolume" value="{{box.totalVolume}}"  formControlName="totalVolume"  placeholder="N/A">
+        <input type="number" min=1 class="form-control" id="inputVolume" formControlName="totalVolume"  placeholder="N/A">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
@@ -83,7 +84,7 @@
 
   </div>
   <div class="d-inline-block p-1">
-    <button type="button" class="btn btn-primary"(click)="save()">save</button>
+    <button type="button" class="btn btn-primary" (click)="save()">save</button>
   </div>
     <button type="button" class="btn btn-secondary"  (click)="CancelDetails()">Cancel</button>
 
