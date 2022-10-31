@@ -64,7 +64,6 @@ public class AuthenticationService : IAuthenticationService
         {
             return GenerateToken(user);
         }
-
         throw new Exception("Invalid Login");
     }
 }

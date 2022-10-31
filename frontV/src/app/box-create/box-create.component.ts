@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BoxDto} from "../boxes/boxDto";
-import {BoxService} from "../box.service";
-import {MessageService} from "../message.service";
+import {BoxDto} from "../../interfaces/boxDto";
+import {BoxService} from "../../services/box.service";
+import {MessageService} from "../../services/message.service";
 
 
 @Component({
@@ -29,8 +29,7 @@ test:string ="TTTT";
   add(): void {
     //validation?!?!?
     if (this.boxDto){
-      this.boxService.addBox(this.boxDto)
-        .subscribe();
+      this.boxService.addBox(this.boxDto);
     }
 
   }

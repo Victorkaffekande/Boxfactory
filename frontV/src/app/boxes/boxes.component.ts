@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Box} from "./box";
-import {BoxService} from "../box.service";
-import {MessageService} from "../message.service";
+import {Box} from "../../interfaces/box";
+import {BoxService} from "../../services/box.service";
+import {MessageService} from "../../services/message.service";
 
 
 @Component({
@@ -23,15 +23,14 @@ export class BoxesComponent implements OnInit {
     this.getBoxes();
   }
 
-  getBoxes(): void {
-    this.boxService.getBoxes()
-      .subscribe(boxes => this.boxes = boxes);
+  async getBoxes() {
+   this.boxes = await this.boxService.getBoxes();
   }
 
   delete(box: Box): void {
     if (confirm("Are you sure you want to delete " + box.name + "?")) {
       this.boxes = this.boxes.filter(b => b !== box);//fjerner boxen fra den lokale liste
-      this.boxService.deleteBox(box.id).subscribe();//fjerner boxen fra Databasen
+      this.boxService.deleteBox(box.id)//fjerner boxen fra Databasen
     }
   }
 
@@ -49,11 +48,6 @@ export class BoxesComponent implements OnInit {
     this.nullSelectedBox(box)
 
   }
-
-  resetBoxInfo() {
-
-  }
-
   nullSelectedBox(value: Box) {
     this.selectedBox = undefined;
   }

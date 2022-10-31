@@ -1,9 +1,9 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {Box} from "../boxes/box";
+import {Box} from "../../interfaces/box";
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import {BoxService} from "../box.service";
-import {MessageService} from "../message.service";
+import {BoxService} from "../../services/box.service";
+import {MessageService} from "../../services/message.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
@@ -60,16 +60,14 @@ set inBox(box: any){
       this.detailsForm.controls['depth'].setValue(this.box.depth +"")
       this.detailsForm.controls['thickness'].setValue(this.box.thickness +"")
       this.detailsForm.controls['totalVolume'].setValue(this.box.totalVolume +"")
-
-      // @ts-ignore
-
     }
   }
 
-  getBox(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.boxService.getBox(id)
-      .subscribe(box => this.box = box);
+  async getBox(){
+    if (this.box){
+      const id = Number(this.route.snapshot.paramMap.get('id'));
+      this.box = await this.boxService.getBox(id)
+    }
   }
 
   save(): void {
@@ -82,7 +80,6 @@ set inBox(box: any){
       this.box.totalVolume = Number(<string>this.detailsForm.get("totalVolume")?.value);
       this.box.thickness = Number(<string>this.detailsForm.get("thickness")?.value);
       this.boxService.updateBox(this.box)
-        .subscribe();
     }
     this.CancelDetails();
   }
