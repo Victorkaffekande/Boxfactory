@@ -61,6 +61,7 @@ public class BoxController : ControllerBase
         }
     }
 
+    [Authorize("AdminPolicy")]
     [HttpDelete]
     [Route("DeleteBox/{id}")]
     public ActionResult DeleteBox([FromRoute] int id)

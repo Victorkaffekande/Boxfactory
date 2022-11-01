@@ -22,11 +22,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
- async login() {
+  async login() {
     const dto: UserDto = {
       username: <string>this.loginForm.get("username")?.value,
       password: <string>this.loginForm.get("password")?.value,
-      role:"Admin"
     };
     var token = await this.loginService.login(dto);
     localStorage.setItem('token', token)
