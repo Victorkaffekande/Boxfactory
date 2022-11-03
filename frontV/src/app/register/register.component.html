@@ -1,0 +1,62 @@
+<div class="border border-dark p-4">
+  <h3> Register new account</h3>
+  <form [formGroup]="registerForm"
+        (ngSubmit)="register()"
+        #localForm="ngForm">
+    <!-- username input -->
+    <div class="form-outline mb-4">
+      <input type="text"
+             id="username"
+             formControlName="username"
+             class="form-control"
+             [class.is-invalid]="localForm.submitted && registerForm.get('username')?.invalid"/>
+      <div class="invalid-feedback">Username is required</div>
+      <label class="form-label" for="username">Username</label>
+    </div>
+
+    <!-- password input -->
+    <div>
+      <input
+        type="password"
+        formControlName="password"
+        class=form-control
+        [class.is-invalid]="localForm.submitted && registerForm.get('password')?.invalid"/>
+      <div class="invalid-feedback">Password is required</div>
+      <label class="form-label" for="username">Password</label>
+    </div>
+
+    <!-- confirm password input -->
+    <div>
+      <input
+        type="password"
+        formControlName="passwordConfirm"
+        class=form-control
+        [class.is-invalid]="registerForm.errors?.['valuesDoNotMatch'] || localForm.submitted && registerForm.get('username')?.invalid"/>
+      <div class="invalid-feedback"> Your passwords do not match each other</div>
+      <label class="form-label" for="username">Confirm password</label>
+    </div>
+
+    <!-- Role picker -->
+    <select class="custom-select"
+            [class.is-invalid]="localForm.submitted && registerForm.get('role')?.invalid"
+            formControlName="role">
+      <option *ngFor="let r of roles" [ngValue]="r"> {{r}}</option>
+    </select>
+    <div class="invalid-feedback"> You must pick a role</div>
+    <div>Role</div>
+    <button type="submit"
+            class="btn btn-primary"
+    >Register
+    </button>
+
+    <div class="alert alert-success" *ngIf="accountCreated">
+      Account created
+    </div>
+
+    <div class="alert alert-danger" *ngIf="!accountCreated && registerForm.valid">
+      {{errorMsg}}
+    </div>
+
+  </form>
+
+</div>

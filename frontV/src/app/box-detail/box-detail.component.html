@@ -1,11 +1,13 @@
-<div *ngIf="box" [formGroup]="detailsForm" class="container">
+<h3 class="text-center" *ngIf="!box"> Click a box to edit it</h3>
+<div *ngIf="box" [formGroup]="detailsForm">
+  <h3> Edit the details of your box!</h3>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group">
       <label for="inputName">Box name</label>
       <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" >
 
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group">
       <label for="inputColor">Color</label>
       <div >
         <span class="input-group" >
@@ -27,17 +29,21 @@
 
 
   <div class="form-row"> <!-- width height depth row-->
-    <div class="form-group col-md-4">
+    <div class="form-group">
       <label for="inputWidth">Width</label>
       <div class="input-group">
-        <input type="number" min=1 class="form-control" id="inputWidth" formControlName="width">
+        <input type="number"
+               class="form-control"
+               id="inputWidth"
+               formControlName="width"
+               pattern="[1-9]\d*">
         <div class="input-group-append">
           <span class="input-group-text"> mm</span>
         </div>
       </div>
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group">
       <label for="inputHeight">Height</label>
       <div class="input-group">
         <input type="number" min=1 class="form-control" id="inputHeight" formControlName="height">
@@ -48,7 +54,7 @@
     </div>
 
 
-    <div class="form-group col-md-4">
+    <div class="form-group">
       <label for="inputDepth">Depth</label>
       <div class="input-group">
         <input type="number" min=1 class="form-control" id="inputDepth" formControlName="depth">
@@ -61,7 +67,7 @@
   </div>
   <div class="form-row">
 
-    <div class="form-group col-md-6">
+    <div class="form-group">
       <label for="inputThickness">Cardboard Thickness</label>
       <div class="input-group">
         <input type="number" min=1 class="form-control" id="inputThickness" formControlName="thickness">
@@ -71,13 +77,13 @@
       </div>
     </div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group">
       <label for="inputVolume">Total Volume</label>
       <div class="input-group">
         <!-- todo fix total volume-->
         <input type="number" min=1 class="form-control" id="inputVolume" formControlName="totalVolume"  placeholder="N/A">
         <div class="input-group-append">
-          <span class="input-group-text"> mm</span>
+          <span class="input-group-text"> mm<sub>3</sub></span>
         </div>
       </div>
     </div>
