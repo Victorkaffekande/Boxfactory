@@ -6,3 +6,4 @@ export const customAxios = axios.create({
     Authorization: `Bearer ${localStorage.getItem('token')}`
   }
 })
+

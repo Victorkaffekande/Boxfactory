@@ -8,7 +8,6 @@ import axios from "axios";
 import {customAxios} from "./httpAxios";
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,9 +17,12 @@ export class LoginService {
   }
 
   async login(userDto: UserDto): Promise<any> {
-    console.log(userDto)
-    const httpResult = await customAxios.post('Auth/login',userDto);
+    const httpResult = await customAxios.post('Auth/login', userDto);
     return httpResult.data;
   }
 
+  async register(dto: UserDto): Promise<any> {
+      const httpResult = await customAxios.post('Auth/register', dto);
+      return httpResult.data;
+  }
 }

@@ -2,43 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="966be663-d460-4835-8f9e-6622263c232b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontV/.browserslistrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/karma.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/app.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/app.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/app.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/app.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/app.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/boxes/box.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/boxes/boxes.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/boxes/boxes.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/boxes/boxes.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/boxes/boxes.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/app/mock-boxes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/assets/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/environments/environment.prod.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/environments/environment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/polyfills.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/src/test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontV/tsconfig.spec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Api/db.db-shm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Api/db.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Api/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/Api/db.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/db.db-shm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/db.db-wal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontV/src/app/box-detail/box-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontV/src/app/box-detail/box-detail.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +26,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/vigge/Documents/GitHub/Boxfactory",
+    "last_opened_file_path": "C:/Users/victo/Downloads/ComputerSciencePracticeTest",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -72,6 +40,8 @@
       <updated>1665735725684</updated>
       <workItem from="1665735725687" duration="10000" />
       <workItem from="1666032928989" duration="37000" />
+      <workItem from="1667555909110" duration="51000" />
+      <workItem from="1667556090534" duration="32000" />
     </task>
     <servers />
   </component>

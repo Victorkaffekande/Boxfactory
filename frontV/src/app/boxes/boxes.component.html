@@ -1,17 +1,28 @@
-<div class="modal-body row justify-content-center">
-  <div class="col-md-4">
-    <h3 class="d-flex justify-content-center">
+<app-header></app-header>
+<div class="modal-body row justify-content-center p-2">
+  <div class="col-sm">
+    <h3 class="text-center">
       All boxes in the warehouse
     </h3>
     <ul class="form-group">
       <li class="list-group-item" *ngFor="let box of boxes">
         <div class="card">
-          <div class="card-img-top">
-            <input type="color" [(ngModel)]="box.color" disabled>
-          </div>
           <h5 class="card-title">{{box.name}}</h5>
+
+          <div class="card-img-top">
+
+          </div>
+
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{box.width}}w x {{box.height}}h x {{box.depth}}d</li>
+
+            <li class="list-group-item">
+              <span>Color: </span>
+              <input type="color" [(ngModel)]="box.color" disabled></li>
+
+            <li class="list-group-item">
+              <div>Dimensions:</div>
+              {{box.width}}W x {{box.height}}H x {{box.depth}}D
+            </li>
           </ul>
           <div class="btn-group" role="group">
             <button class="btn btn-primary"
@@ -29,9 +40,15 @@
       </li>
     </ul>
   </div>
-  <app-box-detail
-    [inBox]="selectedBox"
-    (cancelEvent)="nullSelectedBox($event)"></app-box-detail>
+
+
+  <div class="col-sm">
+    <app-box-detail
+      [inBox]="selectedBox"
+      (cancelEvent)="nullSelectedBox($event)"></app-box-detail>
+  </div>
+
+
 </div>
 
 

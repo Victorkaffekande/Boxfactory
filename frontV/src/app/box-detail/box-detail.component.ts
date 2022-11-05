@@ -77,11 +77,13 @@ set inBox(box: any){
       this.box.width = Number(<string>this.detailsForm.get("width")?.value);
       this.box.height = Number(<string>this.detailsForm.get("height")?.value);
       this.box.depth = Number(<string>this.detailsForm.get("depth")?.value);
-      this.box.totalVolume = Number(<string>this.detailsForm.get("totalVolume")?.value);
+      this.box.totalVolume = this.box.width*this.box.depth*this.box.height;
       this.box.thickness = Number(<string>this.detailsForm.get("thickness")?.value);
-      this.boxService.updateBox(this.box)
+      if (this.boxService.updateBox(this.box) != null){
+        this.CancelDetails()
+      }
     }
-    this.CancelDetails();
+
   }
 
   updateBox(value: string, colorBox: HTMLInputElement) {
