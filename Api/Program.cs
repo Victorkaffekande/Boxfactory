@@ -1,6 +1,7 @@
 using System.Text;
 using Application.DTO;
 using Application.Helpers;
+using Application.Interfaces;
 using AutoMapper;
 using Domain.Enteties;
 using FluentValidation;
@@ -28,6 +29,7 @@ var mapper = new MapperConfiguration(config =>
     config.CreateMap<BoxDTO, Box>()).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
 infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructure(builder.Services);
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));

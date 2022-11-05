@@ -1,0 +1,19 @@
+<html style="background-color: #f6e6d2">
+<br>
+<br>
+
+  <mat-card style="width: fit-content; margin-left: 45%" > Login
+    <br>
+ <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Username</mat-label>
+    <input [(ngModel)]="username" matInput>
+  </mat-form-field>
+ <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input [(ngModel)]="password" matInput type="password">
+  </mat-form-field>
+ <br>
+ <button mat-raised-button (click)="login()">Log in</button>
+  </mat-card>
+</html>
